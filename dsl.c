@@ -1,90 +1,57 @@
-#include <inttypes.h>
+#include "dsl.h"
+#include "main.h"
 
-//Xxx_StartProtocol(Std_ReturnType, Dcm_ProtocolType, uint16, uint16)
-
-//Dcm_StartProtocol()
-
-typedef uint8_t Std_ReturnType;
-#define E_OK 1
-#define E_NOK 0
-
-//#define 10 DIAG_SESSION_CONTROL
-//#define 11 ECU_RESET
-
-
-
-
-Std_ReturnType PduR_DcmTransmit(uint8_t PduIdType, uint8_t *PduInfoType1)
+Std_ReturnType Dcm_RxIndication(uint8_t *PduInfoType)
 {
-    printf("\n\nIn DSL: \nThe PduIdType is : %x", PduIdType);
-
-    printf("\nThe PduInfoType is : ");
+    printf("\n\nIn DSL: \nThe PduInfoType is : ");
     for(int i=0; i<8; i++)
     {
-        printf("%.2x ", PduInfoType1[i]);
+        PduInfoType2[i] = PduInfoType[i];       //STORE THE FRAME IN BUFFER`
+        printf("%.2x ", PduInfoType[i]);
     }
 
-    uint8_t pci_frame_id = PduInfoType1[0];
-    uint8_t dlc_req = PduInfoType1[1];
-    uint8_t sid = PduInfoType1[2];
-    uint8_t sub_fun = PduInfoType1[3];
-
-    printf("\nSID : %.2x", sid);
-    valid_SID(sid);
-
-    return E_OK;
+    Std_ReturnType result = verify_DLC();
+    display_Result(result);
 }
 
-void valid_SID(uint8_t sid, uint8_t sub_fun)
+void Response_Code(uint8_t e0, uint8_t e1, uint8_t e2, uint8_t e3, uint8_t e4, uint8_t e5, uint8_t e6, uint8_t e7)
 {
-    switch(sid)
+    Response[0]= e0; //DLC_SDU
+    Response[1]= e1; //SID
+    Response[2]= e2; //SubFun
+    Response[3]= e3; //
+    Response[4]= e4; //
+    Response[5]= e5; //
+    Response[6]= e6; //
+    Response[7]= e7; //
+
+    printf("\n-----------------------------------------------\n");
+    if(Response[1] != NEGETIVE_RESPONSE_ID)
     {
-    case 0x10:
-        printf("\nDiagnostic Session Control Service...!");
-
-        switch(sub_fun)
-        {
-        case 0x01:
-            printf("\nDefault Session Activated...!");
-
-            break;
-        case 0x02:
-            printf("\nProgramming Session Activated...!");
-
-            break;
-        case 0x03:
-            printf("\nExtended Session Activated...!");
-
-            break;
-        default:
-            printf("\n\nNRC: 0x12 - Subfunction not supported");
-            break;
-        }
-
-
-        break;
-
-    case 0x11:
-
-        break;
-
-    case 0x27:
-
-        break;
-
-    case 0x28:
-        printf("\nCommunication Control Service...!");
-        break;
-
-    case 0x3E:
-        printf("\nTester present Service...!");
-        break;
-
-    default:
-        printf("\n\nNRC: 0x11 - Service not supported");
-
+        printf("POSSITIVE RESPONSE :    ");
     }
+    else
+    {
+        printf("NEGETIVE RESPONSE :     ");
+    }
+
+    Send_Response(Response);
 }
+
+void Send_Response(uint8_t Response[])
+{
+    for(int i=0; i<8; i++)
+    {
+        printf("%.2x ", Response[i]);
+    }
+    printf("\n-----------------------------------------------\n\n");
+
+}
+
+
+
+
+
 
 
 

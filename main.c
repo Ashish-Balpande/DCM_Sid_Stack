@@ -1,43 +1,57 @@
 #include "main.h"
 
-typedef uint8_t Std_ReturnType;
-#define E_OK 1
-#define E_NOK 0
-
-uint8_t PduInfoType[8];                    //12 12 23 45 67 85 8b ab   //00
+uint8_t PduInfoType[8];
+Std_ReturnType Result;
 
 void main()
 {
-    printf("Enter the Elements (in hex formate): ");
+    while(1)
+    {
+        Start();
+    }
+}
+
+void Start()
+{
+    printf("\n\nEnter the Elements (in hex format): ");
+    printf("\n-----------------------------------------------\n");
+    printf("REQUEST :               ");
     for(int i=0; i<8; i++)
     {
         scanf("%x", &PduInfoType[i]);
     }
+    printf("-----------------------------------------------");
 
-    printf("\nIn Main: \nThe above SDU is : ");
+    printf("\nIn MAIN: \nThe PduInfoType is : ");
     for(int i=0; i<8; i++)
     {
         printf("%.2x ", PduInfoType[i]);
     }
 
-    uint8_t PduIdType = PduInfoType[0];
+    Result = Dcm_RxIndication(&PduInfoType[0]);
 
-    Std_ReturnType result = PduR_DcmTransmit(PduIdType, &PduInfoType[0]);
+    display_Result(Result);
+}
 
+
+void display_Result(uint8_t result)
+{
     if(result == 1)
     {
-        printf("\nResult : E_OK");
+        printf("Result : E_OK\n");
+        Start();
     }
     else
     {
-        printf("\nResult : E_NOK");
+        printf("Result : E_NOT_OK\n");
     }
-
 }
-//id | dlc
-//PCI_INFO  DLC_Req SID SF
-//12 12 23 45 67 85 8b ab
-//00 02 3E 03 00 00 00 00
+
+//Req Ext Ses :     02 10 03 00 00 00 00 00
+//Req Seed :        02 27 03 00 00 00 00 00
+//Send Key :        04 27 04 22 11 00 00 00
+//DID Read req :    03 22 F1 90 00 00 00 00   //03 22 F1 91 00 00 00 00
 
 //Std_ReturnType  PduR_DcmTransmit(Std_ReturnType, PduIdType, const PduInfoType*):
 //Dcm_TpRxIndication(PduIdType, Std_ReturnType);
+

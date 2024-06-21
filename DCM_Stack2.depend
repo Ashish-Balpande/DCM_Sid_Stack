@@ -1,0 +1,63 @@
+# depslib dependency file v1.0
+1718790741 source:d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack1\dcm.c
+	"dcm.h"
+
+1718790528 d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack1\dcm.h
+
+1718866806 source:d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack1\main.c
+	<stdio.h>
+	<inttypes.h>
+
+1718790741 d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack1\main.h
+	<stdio.h>
+	<inttypes.h>
+	"dcm.h"
+
+1718859260 source:d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack1\dsd.c
+
+1718866601 source:d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack1\dsl.c
+	<inttypes.h>
+
+1718792402 source:d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack1\dsp.c
+
+1718790741 source:d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack2\dcm.c
+	"dcm.h"
+
+1718790528 d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack2\dcm.h
+
+1718887425 source:d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack2\dsp.c
+	"dsp.h"
+
+1718879461 d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack2\nvm.h
+
+1718982726 source:d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack2\main.c
+	"main.h"
+
+1718979295 d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack2\dsl.h
+	<inttypes.h>
+
+1718879448 source:d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack2\nvm.c
+
+1718879533 d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack2\main.h
+	<stdio.h>
+	<inttypes.h>
+
+1718984054 source:d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack2\dsd.c
+	"dsd.h"
+	"dsl.h"
+
+1718880733 d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack2\dsd.h
+	<stdio.h>
+	<inttypes.h>
+
+1718881507 d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack2\dsl.c
+	"dsl.h"
+
+1718981211 source:d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack2\dsl.c
+	"dsl.h"
+	"main.h"
+
+1718882195 d:\ashish_b\microcontroller\micro_workspace\dcm stack\dcm_stack2\dsp.h
+	<stdio.h>
+	<inttypes.h>
+
